@@ -1,34 +1,83 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useCallback, useEffect, useState } from "react";
+import {
+  Route,
+  Router,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
+import "./App.css";
+import Header from "./components/Header/Header";
+import HomePage from "./components/HomePage/HomePage";
+import ProductDetail from "./components/ProductsList/ProductDetailItem/ProductDetail";
+
+import type { ProductProps } from "./components/HomePage/HomePage";
+import CartsList from "./components/Carts";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [products, setProducts] = useState<ProductProps[]>([]);
+  const [carts, setCarts] = useState<ProductProps[]>([]);
+  const [search, setSearch] = useState<string>("");
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const onAddToCart = useCallback(
+    (product: ProductProps) => {
+      setCarts([...carts, product]);
+    },
+    [carts, setCarts]
+  );
+
+  const onClearCarts = () => {
+    setCarts([]);
+  };
+
+  const onSetSearch = useCallback(
+    (search: string) => {
+      setSearch(search);
+      if (location.pathname !== "/") {
+        navigate("/");
+      }
+    },
+    [search, navigate, location]
+  );
+
+  useEffect(() => {
+    const getData = async () => {
+      const data = await fetch("https://fakestoreapi.com/products").then(
+        (res) => res.json()
+      );
+
+      setProducts(data);
+    };
+    getData();
+  }, []);
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div className='App'>
+      <Header
+        search={search}
+        setSearch={setSearch}
+        onSetSearch={onSetSearch}
+        carts={carts}
+      />
+      <Routes>
+        <Route
+          path='/'
+          element={
+            <HomePage
+              products={products}
+              search={search}
+              onAddToCart={onAddToCart}
+            />
+          }
+        />
+        <Route path='/products/:id'>{/* <ProductDetail /> */}</Route>
+        <Route path='/carts' element={<CartsList carts={carts} />} />
+      </Routes>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
