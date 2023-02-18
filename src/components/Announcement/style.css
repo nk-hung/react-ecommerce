@@ -1,0 +1,26 @@
+.announcement-container {
+  display: flex;
+  flex-direction: row;
+  background-color: #db5a42;
+  align-items: center;
+  padding: 10px 20px;
+  justify-content: space-between;
+  border-bottom: 1px solid #bbb;
+}
+
+.social-media-container,
+.btn-group {
+  display: flex;
+  gap: 10px;
+  color: #fff;
+}
+
+.btn-group .btn-login,
+.btn-register {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}

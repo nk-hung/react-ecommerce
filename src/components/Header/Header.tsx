@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
 import "./style.css";
-import type { ProductProps } from "../HomePage/HomePage";
+import type { ProductProps } from "../../utils/types";
 type Props = {
   search: string;
   setSearch: React.Dispatch<SetStateAction<string>>;

@@ -1,19 +1,7 @@
 import React, { useMemo } from "react";
 
+import { ProductProps } from "../../utils/types";
 import "./style.css";
-
-export type ProductProps = {
-  title?: string;
-  description?: string;
-  id: number;
-  price?: number;
-  image?: string;
-  rating?: {
-    rate?: number;
-    count?: number;
-  };
-  category?: string;
-};
 
 const HomePage = ({
   products,

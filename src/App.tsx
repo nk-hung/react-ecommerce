@@ -11,8 +11,10 @@ import Header from "./components/Header/Header";
 import HomePage from "./components/HomePage/HomePage";
 import ProductDetail from "./components/ProductsList/ProductDetailItem/ProductDetail";
 
-import type { ProductProps } from "./components/HomePage/HomePage";
+import type { ProductProps } from "./utils/types";
 import CartsList from "./components/Carts";
+import Announcement from "./components/Announcement";
+import Login from "./components/Login";
 
 function App() {
   const [products, setProducts] = useState<ProductProps[]>([]);
@@ -25,6 +27,24 @@ function App() {
   const onAddToCart = useCallback(
     (product: ProductProps) => {
       setCarts([...carts, product]);
+    },
+    [carts, setCarts]
+  );
+
+  const onRemoveToCart = useCallback(
+    (product: ProductProps) => {
+      const funcCheck = (item: ProductProps) =>
+        JSON.stringify(item) === JSON.stringify(product);
+      const existProduct = carts.some(funcCheck);
+
+      if (existProduct) {
+        const newArr = JSON.parse(JSON.stringify(carts));
+        const index = newArr.findLastIndex(funcCheck);
+        console.log("index", index);
+        newArr.splice(index, 1);
+        console.log("carts", newArr);
+        setCarts(newArr);
+      }
     },
     [carts, setCarts]
   );
@@ -56,6 +76,7 @@ function App() {
 
   return (
     <div className='App'>
+      <Announcement />
       <Header
         search={search}
         setSearch={setSearch}
@@ -73,8 +94,18 @@ function App() {
             />
           }
         />
+        <Route path='/login' element={<Login />} />
         <Route path='/products/:id'>{/* <ProductDetail /> */}</Route>
-        <Route path='/carts' element={<CartsList carts={carts} />} />
+        <Route
+          path='/carts'
+          element={
+            <CartsList
+              carts={carts}
+              onAddToCart={onAddToCart}
+              onRemoveToCart={onRemoveToCart}
+            />
+          }
+        />
       </Routes>
     </div>
   );
