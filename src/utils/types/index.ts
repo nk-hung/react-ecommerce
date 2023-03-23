@@ -1,7 +1,7 @@
 export type ProductProps = {
   title?: string;
   description?: string;
-  id: number;
+  _id: string;
   price: number;
   image?: string;
   rating?: {
