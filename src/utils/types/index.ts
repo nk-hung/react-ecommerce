@@ -1,6 +1,7 @@
 export type ProductProps = {
   title?: string;
   description?: string;
+  name: string,
   _id: string;
   price: number;
   image?: string;
@@ -8,6 +9,7 @@ export type ProductProps = {
     rate?: number;
     count?: number;
   };
+  countInStock: number,
   category?: string;
 };
 
