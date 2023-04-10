@@ -8,7 +8,22 @@ import {
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import './style.css';
+import NavItem from './Nav';
 
+const items = [
+  { label: 'Products', active: true },
+  { label: 'Features' },
+  { label: 'Marketplace' },
+  { label: 'Company' },
+];
+
+const NavItemsContainer = () => (
+  <>
+    {items.map((item, index) => (
+      <NavItem item={item} key={index} />
+    ))}
+  </>
+);
 const Announcement = () => {
   const navigate = useNavigate();
   const [isSignedIn, setIsSignedIn] = useState(false);
@@ -23,17 +38,20 @@ const Announcement = () => {
 
   return (
     <>
-      <div className='flex bg-burnt-orange justify-between items-center p-1 px-20'>
+      <div className='flex bg-air-blue justify-between items-center p-1 px-20 font-source-sans text-black'>
         <div className='social-media-container'>
-          <TwitterOutlined />
-          <FacebookOutlined />
-          <InstagramOutlined />
+          <button >
+            <TwitterOutlined />
+          </button>
+          <button >
+            <FacebookOutlined />
+          </button>
+          <button>
+            <InstagramOutlined />
+          </button>
         </div>
         <div className='flex gap-5 text-white py-2'>
-          <div>Products</div>
-          <div>Features</div>
-          <div>Marketplace</div>
-          <div>Company</div>
+          <NavItemsContainer />
         </div>
         {isSignedIn ? (
           <div className='btn-group'>

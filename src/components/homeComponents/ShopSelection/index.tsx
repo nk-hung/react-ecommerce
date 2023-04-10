@@ -19,7 +19,7 @@ const ShopSelection = () => {
 
   return (
     <div>
-      <div className='row mx-10 md:flex'>
+      <div className='row mx-10 md:flex '>
         {/* <div>Có: {filterProducts.length}</div> */}
         {status === 'loading' ? (
           <p>Loading ....</p>
