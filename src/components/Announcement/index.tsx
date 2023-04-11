@@ -4,6 +4,8 @@ import {
   InstagramOutlined,
   FacebookOutlined,
   TwitterOutlined,
+  MenuOutlined,
+  CloseOutlined,
 } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
@@ -37,18 +39,24 @@ const Announcement = () => {
   }, []);
 
   return (
-    <>
-      <div className='flex bg-air-blue justify-between items-center p-1 px-20 font-source-sans text-black'>
-        <div className='social-media-container'>
-          <button >
-            <TwitterOutlined />
-          </button>
-          <button >
-            <FacebookOutlined />
-          </button>
-          <button>
-            <InstagramOutlined />
-          </button>
+    <div className=''>
+      <div className='grid md:grid-cols-3 md:grid-flow-col md:min-w-[900px] bg-air-blue justify-between items-center p-1 px-20 font-source-sans text-black'>
+        <div className='flex justify-between items-center text-white'>
+          <div className='grid grid-cols-3 gap-2'>
+            <button>
+              <TwitterOutlined />
+            </button>
+            <button>
+              <FacebookOutlined />
+            </button>
+            <button>
+              <InstagramOutlined />
+            </button>
+          </div>
+          <div className=''>
+            <CloseOutlined />
+            <MenuOutlined />
+          </div>
         </div>
         <div className='flex gap-5 text-white py-2'>
           <NavItemsContainer />
@@ -58,7 +66,7 @@ const Announcement = () => {
             <button className='btn-login'>Logout</button>
           </div>
         ) : (
-          <div className='btn-group'>
+          <div className='flex md:justify-end gap-4'>
             <button className='btn-login' onClick={() => navigate('login')}>
               Login
             </button>
@@ -66,7 +74,7 @@ const Announcement = () => {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

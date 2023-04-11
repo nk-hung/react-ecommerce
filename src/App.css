@@ -1,8 +1,23 @@
 @tailwind base;
+@tailwind components;
 
 @layer base {
   body {
     @apply font-source-sans;
   }
 
+}
+
+
+@layer components {
+  .product-container {
+    @apply grid 2xl:grid-cols-4 md:grid md:min-w-[800px] grid-cols-2 gap-10 mb-12 bg-white rounded-xl  ;
+  }
+  .product-item {
+    @apply font-source-sans my-5 md:grid md:min-w-[400px] rounded-md shadow-md shadow-primary hover:shadow-lg overflow-hidden hover:shadow-slate-500  ;
+  }
+  
+  .image {
+    @apply h-48 w-full md:h-full md:w-36 object-cover;
+  }
 }

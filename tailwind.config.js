@@ -19,6 +19,7 @@ export default {
         'burnt-orange': '#bb4d00',
         sienna: '#8f250c',
         'barn-red': '#691e06',
+        primary: '#8d98a7',
       },
     },
     fontFamily: {

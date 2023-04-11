@@ -19,16 +19,18 @@ const ShopSelection = () => {
 
   return (
     <div>
-      <div className='row mx-10 md:flex '>
+      <div className='m-10'>
         {/* <div>Có: {filterProducts.length}</div> */}
         {status === 'loading' ? (
           <p>Loading ....</p>
         ) : error ? (
           <p>error</p>
         ) : (
-          items.map((item: ProductProps, index: number) => (
-            <ProductItem item={item} key={index} />
-          ))
+          <div className='product-container'>
+            {items.map((item: ProductProps, index: number) => (
+              <ProductItem item={item} key={index} />
+            ))}
+          </div>
         )}
       </div>
     </div>

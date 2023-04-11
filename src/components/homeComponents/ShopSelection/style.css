@@ -6,24 +6,6 @@
   padding: 0 50px;
 }
 
-.product-container {
-  border-radius: 5px;
-  margin: 20px;
-  flex: 1;
-  width: 300px;
-  padding: 20px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.product-container:hover {
-  transform: scale(1.05);
-  transition: ease-in-out 0.5s;
-  /* cursor: pointer; */
-}
-
 .image {
   margin: auto;
   display: flex;
